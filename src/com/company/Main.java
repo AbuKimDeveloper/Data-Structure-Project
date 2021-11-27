@@ -1,10 +1,10 @@
 package com.company;
-
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        QueueLinkedList qHolder = new QueueLinkedList();
 
 //        ask user to enter what he wants to do
 //        teacher baddk ta3ti yzeed question aw yshuf l users l 3amlin imtihanet
@@ -14,29 +14,72 @@ public class Main {
         int option;
         Scanner console = new Scanner(System.in);
          char Teacher = console.next().charAt(0);
-        if (Character.toUpperCase(Teacher)=='Y'){
-            System.out.println("1-Create a Quiz ");
+        if (Character.toUpperCase(Teacher)=='Y') {
+            System.out.println("1-Create a Category ");
             System.out.println("2-Check the Grades");
             option = console.nextInt();
-            //if (option==1) return;
-                // creat a quiz
-               // else // check r
 
+
+            if(option == 1) {
+                System.out.println("Please name the category");
+                String name = console.next();
+                Queue xaxa= new Queue(name);
+                System.out.println("How many questions you want to enter");
+                int questionsNumber = console.nextInt();
+                Quiz[] arr = new Quiz[questionsNumber];
+                for (int i=0 ; i< arr.length; i++){
+                    System.out.println("What is the question");
+                    String question = console.next();
+                    Quiz quiz  = new Quiz(question);
+                    arr[i] = quiz;
+                }
+
+
+                for (int i = 0; i < arr.length; i++) {
+                    System.out.println("What are the 4 choices that you want to enter for question => " + arr[i].Question);
+                    for(int j = 0; j < 4 ; j++) {
+                        System.out.println("Enter choice " + (j + 1));
+                        String choice = console.next();
+                        arr[i].addChoice(choice,j);
+                    }
+                    System.out.println("Which one is the correct answer");
+                    String correctAnswer = console.next();
+                    int correctIndex = 0;
+                    for (int k=0; k<arr[i].choices.length; k++){
+                        if (arr[i].choices[k].toLowerCase()==correctAnswer.toLowerCase()){
+                            correctIndex= k;
+                        }
+                    }
+                    xaxa.enqueue(arr[i].Question,arr[i].choices,correctIndex);
+
+                }
+                qHolder.insertAtFront(xaxa);
+                qHolder.display();
+                char ans;
+                do {
+                    ans = Quiz(qHolder);
+                } while (ans == 'y');
+            }
             return;
         }
-        char ans;
-        do {
-            ans = Quiz();
-        } while (ans == 'y');
+        else if (Character.toUpperCase(Teacher)=='N'){
+            char ans;
+            do {
+                ans = Quiz(qHolder);
+            } while (ans == 'y');
+
+        }
+
 
     }
 
-    public static char Quiz() {
+    public static char Quiz(QueueLinkedList qHolder) {
         Scanner Input = new Scanner(System.in);
-        System.out.println("Welcome to the quiz application!"
-                + "\nPlease choose a category to start answering the quiz questions\nCategories:\n1-Sports"
-                + "\n2-History\n3-Tech\n4-Health\n5-Social\n---------------------------");
+//        System.out.println("Welcome to the quiz application!"
+//                + "\nPlease choose a category to start answering the quiz questions\nCategories:\n1-Sports"
+//                + "\n2-History\n3-Tech\n4-Health\n5-Social\n---------------------------");
 
+        qHolder.display();
         Queue Sports = new Queue("Sports");
         Quiz sportsQuestion = new Quiz("Which player has won 11 titles at one particular Grand Slam event?");
 
@@ -119,8 +162,8 @@ public class Main {
         I = 0;
         Sports.enqueue(sportQuestion10.Question, sportQuestion9.choices, I);
 
-        QueueLinkedList QLL = new QueueLinkedList();
-        QLL.insertAtFront(Sports);
+//        QueueLinkedList QLL = new QueueLinkedList();
+        qHolder.insertAtFront(Sports);
 
         Queue History = new Queue("History");
         Quiz historyQuestion = new Quiz("What year did WW2 start?");
@@ -202,7 +245,7 @@ public class Main {
         historyQuestion10.addChoice("1948");
         I = 0;
         History.enqueue(historyQuestion10.Question, historyQuestion10.choices, I);
-        QLL.insertAtFront(History);
+        qHolder.insertAtFront(History);
 
         Queue Tech = new Queue("Tech");
         Quiz techQuestion = new Quiz("Who introduced the original iPhone in 2007?");
@@ -285,7 +328,7 @@ public class Main {
         techQuestion10.addChoice("Samsung");
         I = 0;
         Tech.enqueue(techQuestion10.Question,techQuestion10.choices, I);
-        QLL.insertAtFront(Tech);
+        qHolder.insertAtFront(Tech);
 
         Queue Health = new Queue("Health");
         Quiz healthQuestion = new Quiz("How do we maintain brain health?");
@@ -367,7 +410,7 @@ public class Main {
         healthQuestion10.addChoice("7");
         I = 0;
         Health.enqueue(healthQuestion10.Question, healthQuestion10.choices, I);
-        QLL.insertAtFront(Health);
+        qHolder.insertAtFront(Health);
 
 
         Queue Social = new Queue("Social");
@@ -453,7 +496,7 @@ public class Main {
         I = 0;
         Social.enqueue(socialQuestion10.Question, socialQuestion10.choices, I);
 
-        QLL.insertAtFront(Social);
+        qHolder.insertAtFront(Social);
         Actions(Sports, History, Tech, Health, Social);
         System.out.println("Would you like to return to main menu?(y or n)");
         char ans = Input.next().charAt(0);

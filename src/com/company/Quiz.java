@@ -13,4 +13,5 @@ public class Quiz {
     void addChoice(String choice,int i ){
          choices[i] = choice;
     }
+
 }

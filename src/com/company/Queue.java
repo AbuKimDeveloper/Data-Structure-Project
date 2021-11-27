@@ -12,9 +12,7 @@ public class Queue extends LinkedList {
         super.insertAtBack(Question, Choices, C);
     }
 
-    public void dequeue() {
-        super.deleteAtBack();
-    }
+
 
     @Override
     public void display() {

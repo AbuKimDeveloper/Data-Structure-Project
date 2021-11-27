@@ -3,7 +3,7 @@ package com.company;
 public class QueueLinkedList {
     Queue first;
     String Name;
-    Node N;
+
 
     public QueueLinkedList(String S) {
         first = null;
@@ -18,6 +18,15 @@ public class QueueLinkedList {
     public void insertAtFront(Queue Q) {
         Q.next = first;
         first = Q;
-
     }
+
+    public void display() {
+        Queue current = first;
+        while(current.next != null) {
+            //Ba3ed fi l display hon
+        }
+    }
+
+
+
 }
