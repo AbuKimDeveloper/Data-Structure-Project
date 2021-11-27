@@ -20,12 +20,7 @@ public class QueueLinkedList {
         first = Q;
     }
 
-    public void display() {
-        Queue current = first;
-        while(current.next != null) {
-            //Ba3ed fi l display hon
-        }
-    }
+
 
 
 
