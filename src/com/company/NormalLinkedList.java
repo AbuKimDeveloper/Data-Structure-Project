@@ -1,5 +1,4 @@
 package com.company;
-
 public class NormalLinkedList {
 	Node first;
 
@@ -63,7 +62,6 @@ public class NormalLinkedList {
 
 		return 0;
 	}
-
 
 	public void clearLinkedList() {
 		first = null;

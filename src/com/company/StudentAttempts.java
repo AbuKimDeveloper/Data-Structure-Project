@@ -1,11 +1,25 @@
 package com.company;
+import java.util.Scanner;
 
 public class StudentAttempts {
+	boolean ShortAnswer = false;
 	Student first;
 	StudentAttempts next;
+	String Name;
 
 	public void push(String FName, String LName, int Grade, int Id) {
 		Student NewUser = new Student(FName, LName, Grade, Id);
+		if (!(isEmpty())) {
+			NewUser.next = first;
+			first = NewUser;
+		} else {
+			first = NewUser;
+			next = null;
+		}
+	}
+
+	public void push(String FName, String LName, int Grade, int Id, String[] ShortAnswers) {
+		Student NewUser = new Student(FName, LName, Grade, Id, ShortAnswers);
 		if (!(isEmpty())) {
 			NewUser.next = first;
 			first = NewUser;
@@ -22,8 +36,9 @@ public class StudentAttempts {
 		return false;
 	}
 
-	public StudentAttempts() {
+	public StudentAttempts(String S) {
 		first = null;
+		Name = S;
 	}
 
 	public Student pop() {
@@ -38,40 +53,23 @@ public class StudentAttempts {
 		return null;
 
 	}
-	public Student SearchValueAtIndex(int index) { //3mela binary search
+
+	public Student SearchValueAtIndex(int index) {
+
 		int counter = 1;
-		Student  current = first;
+		Student current = first;
 		while (counter != index) {
 			current = current.next;
 			counter++;
 		}
 		return current;
-	}
-	public boolean CheckID(int id,int index){
-		boolean checker=false;
-		StudentAttempts s1 =SearchValueAtIndex(index);
-			StudentAttempts temp= new StudentAttempts();
-			while (!isEmpty()){
-				Student d1= new Student();
-				d1=s1.pop();
-				temp.push(d1.firstName, d1.lastName, d1.Grade, d1.ID);
-				if (d1.ID==id)
-					checker = true;
-			}
-			while (!temp.isEmpty()){
-				Student d2= new Student();
-				d2=temp.pop();
-				s1.push(d2.firstName, d2.lastName, d2.Grade, d2.ID);
-			}
-		return checker;
+
 	}
 
-
-
-
-	void display() {
+	boolean display() {
+		boolean check = true;
 		if (!(isEmpty())) {
-			StudentAttempts Temp = new StudentAttempts();
+			StudentAttempts Temp = new StudentAttempts("Temp");
 
 			while (!(isEmpty())) {
 				Student C = pop();
@@ -84,9 +82,58 @@ public class StudentAttempts {
 				push(C.firstName, C.lastName, C.Grade, C.ID);
 			}
 
+			check = true;
+
 		} else {
 			System.out.println("No Student Records!");
+			check = false;
 		}
+
+		return check;
+	}
+
+	boolean deleteStudentRecordByIndex(int index) {
+		StudentAttempts Temp = new StudentAttempts("Temp");
+		if (!isEmpty()) {
+			int counter = 1;
+			Student S = pop();
+
+			while (!isEmpty()) {
+				if (counter == index) {
+
+				} else {
+					Temp.push(S.firstName, S.lastName, S.Grade, S.ID);
+				}
+			}
+
+			while (!Temp.isEmpty()) {
+				S = Temp.pop();
+
+				push(S.firstName, S.lastName, S.Grade, S.ID);
+
+			}
+			return true;
+
+		} else {
+			System.out.println("No Student Records to delete");
+			return false;
+		}
+	}
+
+	public void CorrectQuizzes() {
+		Scanner Input = new Scanner(System.in);
+		StudentAttempts Temp = new StudentAttempts("Temp");
+
+		Student St = pop();
+
+		System.out.println(St.firstName + " " + St.lastName + "//ID: " + St.ID + "\n");
+		for (int i = 0; i < St.ShortAnswers.length; i++) {
+
+			System.out.println("Answer of question " + (i + 1) + ": " + St.ShortAnswers[i]);
+		}
+		System.out.println("Input the grade:");
+		int grade = Input.nextInt();
+		push(St.firstName, St.lastName, grade, St.ID, St.ShortAnswers);
 	}
 
 }

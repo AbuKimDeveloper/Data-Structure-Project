@@ -1,11 +1,11 @@
 package com.company;
-
 public class Question {
 	int data;
 	String Question;
 	String[] choices = new String[4];
 	int IndexOfCorrectAns = 0;
 	Question next;
+	String ShortAnswer;
 
 	Question(String question) {
 		Question = question;
@@ -18,8 +18,6 @@ public class Question {
 		this.IndexOfCorrectAns = IndexOfCorrectAns;
 		next = null;
 	}
-
-
 
 	// Method overloading
 	void addChoice(String choice) {

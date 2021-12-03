@@ -1,12 +1,12 @@
 package com.company;
-
 import java.util.Random;
 import java.util.Scanner;
 
 public class Category extends LinkedListToQueue {
+	boolean ShortAnswer = false;
 	String Category;
 	Category next;
-
+	Question first;
 
 	public Category(String Category) {
 		this.Category = Category;
@@ -17,6 +17,11 @@ public class Category extends LinkedListToQueue {
 	}
 
 	public void enqueue(Question Q) {
+		insertAtBack(Q);
+	}
+
+	public void enqueue(String Qs) {
+		Question Q = new Question(Qs);
 		insertAtBack(Q);
 	}
 
@@ -31,7 +36,7 @@ public class Category extends LinkedListToQueue {
 
 	}
 
-	public int getQuizSize() { // kermel size lal quiz wa2t badna ntali3 l grade
+	public int getQuizSize() {
 		if (!isEmpty()) {
 			Category Temp = new Category();
 			int counter = 0;
@@ -49,9 +54,32 @@ public class Category extends LinkedListToQueue {
 			return counter;
 		}
 		return 0;
+
 	}
 
-	public int CalcGrade() { // hayde bade erja3 shufa
+	public int getQuizSize2() {
+		if (!isEmpty()) {
+			Category Temp = new Category();
+			int counter = 0;
+			while (!(isEmpty())) {
+				Question Q = dequeue();
+				Temp.enqueue(Q.Question);
+				counter++;
+			}
+
+			while (!(Temp.isEmpty())) {
+				Question Q = Temp.dequeue();
+				enqueue(Q.Question);
+
+			}
+			return counter;
+		}
+		return 20;
+
+	}
+
+	public int calcGrade() {
+
 		int Grade = 0;
 		int size = getQuizSize();
 		Scanner Input = new Scanner(System.in);

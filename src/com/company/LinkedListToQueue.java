@@ -1,5 +1,4 @@
 package com.company;
-
 public class LinkedListToQueue {
 	Question first;
 	String Name;

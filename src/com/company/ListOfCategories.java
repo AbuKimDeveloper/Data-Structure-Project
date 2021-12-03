@@ -1,5 +1,4 @@
 package com.company;
-
 public class ListOfCategories {
 	static Category first;
 	String Name;
@@ -33,9 +32,8 @@ public class ListOfCategories {
 		}
 		return false;
 	}
-	//3mol removeAtIndexLa yma7e l categorie
 
-	public Category SearchValueAtIndex(int ans) { //3mela binary search
+	public Category SearchValueAtIndex(int ans) {
 		int counter = 1;
 		Category current = first;
 		while (counter != ans) {
@@ -44,17 +42,27 @@ public class ListOfCategories {
 		}
 		return current;
 	}
-	void deleteAtIndex(int index){
-		Category node=SearchValueAtIndex(index);
-		if (!isEmpty()){
+
+	boolean deleteAtIndex(int index) {
+		Category delete = SearchValueAtIndex(index);
+		if (!isEmpty()) {
+			if (index == 1) {
+				first = first.next;
+				return true;
+			}
 			Category current = first;
 			Category previous = first;
-			while (current!=node){
+			while (current != delete && current != null) {
 				previous = current;
 				current = current.next;
 			}
-			previous.next=current.next;
+			if (current != null) {
+				previous.next = current.next;
+				return true;
+			}
 		}
+		System.out.println("No Quizzes to delete!");
+		return false;
 	}
 
 	public int sizeOfLL() {
@@ -80,24 +88,26 @@ public class ListOfCategories {
 		return counter;
 	}
 
-
-	public static boolean CheckCategories(String category){
+	public static boolean CheckCategories(String category) {
 		Category current = first;
-		while (current!=null){
+		while (current != null) {
 			if (category.equals(current.Category)) {
-				System.out.println("This Category is taken\nEnter another name");
+
 				return true;
 			}
-			current=current.next;
+			current = current.next;
 		}
 		return false;
 	}
 
 	public void display() {
 		Category Q = first;
+		int counter = 1;
 		while (Q != null) {
-			System.out.println(Q.Category);
+			System.out.println(counter + "-" + Q.Category);
+			System.out.println();
 			Q = Q.next;
+			counter++;
 		}
 	}
 

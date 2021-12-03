@@ -1,11 +1,11 @@
 package com.company;
-
-public class Student extends StudentAttempts {
+public class Student {
 	String firstName;
 	String lastName;
 	int Grade;
 	int ID;
 	Student next;
+	String[] ShortAnswers = new String[10];
 
 	Student(String firstName, String lastName, int Grade, int ID) {
 		this.firstName = firstName;
@@ -15,8 +15,19 @@ public class Student extends StudentAttempts {
 		next = null;
 
 	}
-	Student(){
 
+	Student(String firstName, String lastName, int Grade, int ID, String[] ShortAnswers) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.Grade = Grade;
+		this.ID = ID;
+		this.ShortAnswers = ShortAnswers;
+		next = null;
+
+	}
+
+	Student() {
+		next = null;
 	}
 
 	Student(String firstName, String lastName, int ID) {
@@ -26,6 +37,5 @@ public class Student extends StudentAttempts {
 		next = null;
 
 	}
-
 
 }
