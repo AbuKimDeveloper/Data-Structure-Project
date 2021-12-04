@@ -1,6 +1,6 @@
 package com.company;
 public class ListOfStudentAttempts {
-	StudentAttempts first;
+	private StudentAttempts first;
 
 	public void insertStackAtBack(StudentAttempts U) {
 

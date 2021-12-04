@@ -1,6 +1,6 @@
 package com.company;
 public class NormalLinkedList {
-	Node first;
+	public Node first;
 
 	public NormalLinkedList() {
 

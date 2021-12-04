@@ -3,10 +3,42 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Category extends LinkedListToQueue {
-	boolean ShortAnswer = false;
-	String Category;
+	private boolean ShortAnswer = false;
+	private String Category;
 	Category next;
-	Question first;
+	private Question first;
+
+	public void setShortAnswer(boolean shortAnswer) {
+		ShortAnswer = shortAnswer;
+	}
+
+	public void setCategory(String category) {
+		Category = category;
+	}
+
+	public void setNext(Category next) {
+		this.next = next;
+	}
+
+	public void setFirst(Question first) {
+		this.first = first;
+	}
+
+	public boolean isShortAnswer() {
+		return ShortAnswer;
+	}
+
+	public String getCategory() {
+		return Category;
+	}
+
+	public Category getNext() {
+		return next;
+	}
+
+	public Question getFirst() {
+		return first;
+	}
 
 	public Category(String Category) {
 		this.Category = Category;

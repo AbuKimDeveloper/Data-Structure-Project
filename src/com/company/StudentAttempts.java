@@ -2,10 +2,10 @@ package com.company;
 import java.util.Scanner;
 
 public class StudentAttempts {
-	boolean ShortAnswer = false;
-	Student first;
-	StudentAttempts next;
-	String Name;
+	public boolean ShortAnswer = false;
+	public Student first;
+	public StudentAttempts next;
+	public String Name;
 
 	public void push(String FName, String LName, int Grade, int Id) {
 		Student NewUser = new Student(FName, LName, Grade, Id);

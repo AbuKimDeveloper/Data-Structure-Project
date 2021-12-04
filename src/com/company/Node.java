@@ -1,8 +1,8 @@
 package com.company;
 public class Node {
 
-	int value;
-	Node next;
+	public int value;
+	public Node next;
 
 	public Node(int i) {
 		value = i;

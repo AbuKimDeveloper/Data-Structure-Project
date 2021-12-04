@@ -1,11 +1,11 @@
 package com.company;
 public class Student {
-	String firstName;
-	String lastName;
-	int Grade;
-	int ID;
-	Student next;
-	String[] ShortAnswers = new String[10];
+	public String firstName;
+	public String lastName;
+	public int Grade;
+	public int ID;
+	public Student next;
+	public String[] ShortAnswers = new String[10];
 
 	Student(String firstName, String lastName, int Grade, int ID) {
 		this.firstName = firstName;

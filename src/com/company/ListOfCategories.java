@@ -91,7 +91,7 @@ public class ListOfCategories {
 	public static boolean CheckCategories(String category) {
 		Category current = first;
 		while (current != null) {
-			if (category.equals(current.Category)) {
+			if (category.equals(current.getCategory())) {
 
 				return true;
 			}
@@ -104,7 +104,7 @@ public class ListOfCategories {
 		Category Q = first;
 		int counter = 1;
 		while (Q != null) {
-			System.out.println(counter + "-" + Q.Category);
+			System.out.println(counter + "-" + Q.getCategory());
 			System.out.println();
 			Q = Q.next;
 			counter++;

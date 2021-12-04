@@ -1,7 +1,7 @@
 package com.company;
 public class LinkedListToQueue {
-	Question first;
-	String Name;
+	private Question first;
+	private String Name;
 
 	public LinkedListToQueue(String S) {
 		first = null;

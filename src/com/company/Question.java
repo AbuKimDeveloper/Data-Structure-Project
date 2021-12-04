@@ -1,11 +1,11 @@
 package com.company;
 public class Question {
-	int data;
-	String Question;
-	String[] choices = new String[4];
-	int IndexOfCorrectAns = 0;
-	Question next;
-	String ShortAnswer;
+	public int data;
+	public String Question;
+	public String[] choices = new String[4];
+	public int IndexOfCorrectAns = 0;
+	public Question next;
+	public String ShortAnswer;
 
 	Question(String question) {
 		Question = question;

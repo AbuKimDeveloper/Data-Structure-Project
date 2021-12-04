@@ -21,7 +21,7 @@ public class MainMenu {
 
 			} catch (InputMismatchException e) {
 				System.out.println("Please enter a valid number");
-				Answer = console.nextInt();
+				console.next();
 			}
 		}
 
@@ -132,7 +132,7 @@ public class MainMenu {
 						counter++;
 					} while (ans == 'y');
 
-					NewCat.ShortAnswer = true;
+					NewCat.setShortAnswer(true);
 					qHolder.insertAtBack(NewCat);
 					NewStack.ShortAnswer = true;
 					sHolder.insertStackAtBack(NewStack);
@@ -258,7 +258,7 @@ public class MainMenu {
 			Actions(qHolder, sHolder, S);
 		}
 		System.out.println("---------------------------");
-		if (qHolder.SearchValueAtIndex(a).ShortAnswer == false) {
+		if (qHolder.SearchValueAtIndex(a).isShortAnswer() == false) {
 			int Grade = qHolder.SearchValueAtIndex(a).calcGrade();
 			Current.push(FName, LName, Grade, Id);
 		} else {
